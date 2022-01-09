@@ -162,6 +162,7 @@ void sendFrameToUdp()
         udp.endPacket();
       }
     }
+    returnFrame();
   }
   else
   {

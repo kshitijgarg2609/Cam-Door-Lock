@@ -4,6 +4,7 @@
 
 void initCam(boolean);
 int getFrame();
+void returnFrame();
 
 boolean cam_start_flg=false;
 camera_fb_t *framecam;
@@ -34,8 +35,8 @@ static camera_config_t cam_conf =
   .ledc_channel = LEDC_CHANNEL_0,
   .pixel_format = PIXFORMAT_JPEG,
   .frame_size = FRAMESIZE_QVGA,
-  .jpeg_quality = 12,
-  .fb_count = 2
+  .jpeg_quality = 10,
+  .fb_count = 1
 };
 
 esp_err_t camera_init()
@@ -60,7 +61,6 @@ esp_err_t camera_capture()
   {
     return ESP_FAIL;
   }
-  esp_camera_fb_return(framecam);
   return ESP_OK;
 }
 
@@ -97,4 +97,9 @@ int getFrame()
     }
   }
   return (frame_flg=='F')?1:0;
+}
+
+void returnFrame()
+{
+  esp_camera_fb_return(framecam);
 }
